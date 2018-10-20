@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  selector: "app-about",
+  templateUrl: "./about.component.html",
+  styleUrls: ["./about.component.scss"]
 })
 export class AboutComponent implements OnInit {
+  router: Router;
+  todos: any;
 
-  router:Router;
-  todos:any;
-  
-  constructor(private route: ActivatedRoute, router: Router, private _data: DataService) {
+  constructor(
+    private route: ActivatedRoute,
+    router: Router,
+    private _data: DataService
+  ) {
     this.route.params.subscribe(res => console.log(res.id));
-  } 
+  }
 
   ngOnInit() {
-    this._data.todo.subscribe(res => this.todos = res);
+    this._data.todo.subscribe(res => (this.todos = res));
   }
   sendMeHome() {
-    this.router.navigate([''])
- 
-}
+    this.router.navigate([""]);
+  }
 }
